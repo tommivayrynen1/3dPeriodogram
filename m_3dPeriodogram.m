@@ -7,7 +7,7 @@ function [p,f] = m_3dPeriodogram(X,taper,nfft,srate)
 % nfft = FFT length in samples
 % sampling rate
 
-
+    X=detrend(X',1)';           % remove linear trend
     npts = size(X,2);           % number of time points analyzed (<= nfft) (i.e., the length of the input dataset)
     ntaper = taper * npts / 2;  % = number of points to taper on each end
     ktop = npts - ntaper;
