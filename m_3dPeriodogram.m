@@ -13,7 +13,8 @@ function [p,f] = m_3dPeriodogram(X,taper,nfft,srate)
     ktop = npts - ntaper;
     phi = pi / ntaper;
     % k = 0 ... nfft-1
-    kp=[0:1:nfft-1];
+    %kp=[0:1:nfft-1]; -> needs to be : 0 .. npts-1
+    kp = [0:1:npts-1];
 
     syms y(k) % Define fractional hamming window function.
     y(k) = piecewise(0 <= k < ntaper,0.54 - 0.46 * cos(k*phi),...
